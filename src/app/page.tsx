@@ -243,7 +243,7 @@ export default function Home() {
             </div>
             <Stack gap="xl" className={styles.letterCopy}>
               <Title order={2} className={styles.sectionTitle}>
-                ME LOVE, PAULINE
+                MY LOVE, PAULINE
               </Title>
               <Text className={styles.letterText}>
                 Bugün senin doğum günün, ama ben içimden geçenleri sadece bir günün
