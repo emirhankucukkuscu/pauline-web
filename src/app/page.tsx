@@ -1,0 +1,344 @@
+"use client";
+
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import {
+  Container,
+  Paper,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
+import styles from "./page.module.css";
+
+const memories = [
+  {
+    src: "/IMG_9734.jpeg",
+    title: "The look I never forget",
+    text: "Bu fotoğrafta bana hep aynı şey geliyor: iyi ki hayatımda Pauline var.",
+  },
+  {
+    src: "/CIMG1481.JPG",
+    title: "A tiny piece of forever",
+    text: "Bazen bir an sadece bir an değildir; dönüp baktığında kalbinin evine dönüşür.",
+  },
+  {
+    src: "/CIMG1536.JPG",
+    title: "Us, softly",
+    text: "Seninle en sıradan gün bile içimde saklamak istediğim bir hatıraya dönüşüyor.",
+  },
+  {
+    src: "/IMG_9642.jpeg",
+    title: "My favorite person",
+    text: "Gülüşün, günün neresinde olursam olayım beni kendime getiriyor.",
+  },
+  {
+    src: "/df69b814-7183-48fa-87e6-537bc5546d9e.jpg",
+    title: "Love in one frame",
+    text: "Bu kareyi görünce aklıma gelen tek şey: daha nice yıllar, daha nice biz.",
+  },
+  {
+    src: "/IMG_9795.JPG",
+    title: "A memory with a heartbeat",
+    text: "Her fotoğrafın altında tek cümle var aslında: seni çok seviyorum.",
+  },
+];
+
+function getPaulineAnswer(question: string) {
+  const normalized = question.toLocaleLowerCase("tr-TR");
+
+  if (normalized.includes("pauline") || normalized.includes("kim")) {
+    return "Pauline, bu sayfanın kalbi. Sevildiğinde dünyayı daha yumuşak, daha sıcak ve daha güzel yapan o özel insan.";
+  }
+
+  if (normalized.includes("biz") || normalized.includes("sizi")) {
+    return "Siz iki kişi değil, aynı hikayenin iki güzel cümlesi gibisiniz. Birbirinizi bulmuş, büyütmüş ve her anıya biraz daha anlam katmışsınız.";
+  }
+
+  if (normalized.includes("doğum") || normalized.includes("birthday")) {
+    return "Happy Birthday Pauline. Bugün sadece doğduğun gün değil; birinin hayatına ışık olduğun bütün günlerin kutlaması.";
+  }
+
+  if (normalized.includes("romantik") || normalized.includes("sev")) {
+    return "Onu seviyorsun çünkü yanında zaman daha nazik akıyor. Çünkü gülüşü ev gibi, sesi huzur gibi, varlığı iyi ki gibi.";
+  }
+
+  return "Pauline hakkında bildiğim en önemli şey şu: bu sayfayı hazırlayan kişi onu çok seviyor. Sorunu biraz daha kişisel sorarsan, cevabı da daha romantik yaparım.";
+}
+
+export default function Home() {
+  const pageRef = useRef<HTMLElement>(null);
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [messages, setMessages] = useState([
+    {
+      role: "bot",
+      text: "Merhaba, ben Pauline için hazırlanmış küçük aşk asistanıyım. Bana Pauline'i, sizi veya doğum gününü sorabilirsin.",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [chatOpen, setChatOpen] = useState(false);
+
+  const memoryItems = useMemo(() => [...memories, ...memories], []);
+
+  useEffect(() => {
+    const page = pageRef.current;
+    if (!page) return;
+
+    let frame = 0;
+    const updateScroll = () => {
+      frame = 0;
+      page.style.setProperty(
+        "--page-progress",
+        (window.scrollY / Math.max(1, document.body.scrollHeight - innerHeight)).toFixed(4),
+      );
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(updateScroll);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add(styles.isVisible);
+        });
+      },
+      { threshold: 0.14 },
+    );
+
+    page.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
+    updateScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const askBot = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) return;
+
+    setMessages((current) => [
+      ...current,
+      { role: "user", text: trimmed },
+      { role: "bot", text: getPaulineAnswer(trimmed) },
+    ]);
+    setChatOpen(true);
+    setInput("");
+  };
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    askBot(input);
+  };
+
+  return (
+    <main
+      ref={pageRef}
+      className={styles.page}
+      onMouseMove={(event) => setCursor({ x: event.clientX, y: event.clientY })}
+    >
+      <div
+        className={styles.cursorGlow}
+        style={{ left: `${cursor.x}px`, top: `${cursor.y}px` }}
+      />
+      <div className={styles.globalLine} aria-hidden="true">
+        <span className={styles.globalLoop} />
+        <span className={styles.globalSweep} />
+      </div>
+      <header className={styles.nav}>
+        <a href="#home" className={styles.brand}>
+          Pauline
+        </a>
+        <nav className={styles.navLinks} aria-label="Page sections">
+          <a href="#letter">Letter</a>
+          <a href="#memories">Memories</a>
+          <a href="#poem">Poem</a>
+        </nav>
+      </header>
+
+      <section className={styles.hero}>
+        <span id="home" className={styles.anchor} />
+        <video
+          className={styles.heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/IMG_9734.jpeg"
+        >
+          <source src="/WhatsApp Video 2025-12-04 at 20.54.16.mp4" type="video/mp4" />
+          <source src="/5fce1afe-a6ae-444b-876b-30073babe832.mp4" type="video/mp4" />
+        </video>
+        <div className={styles.scanlines} />
+        <div className={styles.heroOverlay} />
+        <Container size="xl" className={styles.heroContent}>
+          <div className={styles.heroKicker}>
+            <span>Birthday experience</span>
+            <span>Love archive 001</span>
+          </div>
+          <Title className={styles.heroTitle}>
+            Happy Birthday
+            <span>Pauline</span>
+            Love of My Life
+          </Title>
+          <div className={styles.heroBottom}>
+            <Text className={styles.heroText}>
+              A cinematic little universe built from video, memories, poetry, and all
+              the ways I keep choosing you.
+            </Text>
+            <a href="#letter" className={styles.scrollCue}>
+              Scroll to explore
+            </a>
+          </div>
+        </Container>
+      </section>
+
+      <section className={styles.scrollStory} aria-label="Our story">
+        <div className={styles.storySticky}>
+          <div className={styles.motionLine} aria-hidden="true">
+            <span className={styles.motionLoop} />
+            <span className={styles.motionSweep} />
+          </div>
+          <div className={styles.storyMedia}>
+            <video autoPlay muted loop playsInline poster="/IMG_9734.jpeg">
+              <source src="/5fce1afe-a6ae-444b-876b-30073babe832.mp4" type="video/mp4" />
+            </video>
+            <Image
+              src="/CIMG1536.JPG"
+              alt="A memory of Pauline"
+              fill
+              sizes="100vw"
+              className={`${styles.storyImage} ${styles.storyImageOne}`}
+            />
+            <Image
+              src="/IMG_9795.JPG"
+              alt="Pauline in a favorite memory"
+              fill
+              sizes="100vw"
+              className={`${styles.storyImage} ${styles.storyImageTwo}`}
+            />
+          </div>
+          <div className={styles.storyShade} />
+          <div className={styles.storyProgress} aria-hidden="true"><span /></div>
+          <div className={`${styles.storyBeat} ${styles.storyBeatOne}`}>
+            <small>01 / The beginning</small>
+            <h2>One life.<br />Then you.</h2>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.letterSection}>
+        <span id="letter" className={styles.anchor} />
+        <Container size="xl">
+          <div className={styles.splitScene}>
+            <div className={styles.sceneLabel}>
+              <span>01</span>
+              <span>A letter for you</span>
+            </div>
+            <Stack gap="xl" className={styles.letterCopy}>
+              <Title order={2} className={styles.sectionTitle}>
+                My dearest Pauline,
+              </Title>
+              <Text className={styles.letterText}>
+                Bugün senin doğum günün, ama ben içimden geçenleri sadece bir günün
+                içine sığdıramıyorum. Sen hayatıma geldiğinden beri sıradan anların bile
+                bir anlamı, beklenmedik sessizliklerin bile bir sıcaklığı var. Seninle
+                gülmek, seninle yürümek, seninle aynı gökyüzüne bakmak bile bana hayatın
+                ne kadar güzel olabileceğini hatırlatıyor.
+              </Text>
+              <Text className={styles.letterText}>
+                Sana baktığımda sadece sevdiğim kişiyi değil, yanında daha iyi biri olmak
+                istediğim insanı görüyorum. Gülüşün bende kalan en güzel melodi, varlığın
+                ise günlerimin en huzurlu yeri. İyi ki doğdun sevgilim. İyi ki varsın,
+                iyi ki benim hayatımdasın, iyi ki seninle aynı hikayenin içindeyim.
+              </Text>
+              <Text className={styles.signature}>Forever yours.</Text>
+            </Stack>
+          </div>
+        </Container>
+      </section>
+
+      <section className={styles.memoriesSection} data-reveal>
+        <span id="memories" className={styles.anchor} />
+        <Container size="xl">
+          <div className={styles.sceneLabel}>
+            <span>02</span>
+            <span>Featured memories</span>
+          </div>
+          <Title order={2} className={styles.sectionTitle}>
+            Moments that keep moving, even when time stops.
+          </Title>
+        </Container>
+        <div className={styles.memoryTrack}>
+          <div className={styles.memoryRail}>
+            {memoryItems.map((memory, index) => (
+              <article className={styles.memoryCard} key={`${memory.src}-${index}`}>
+                <div className={styles.memoryImageWrap}>
+                  <Image
+                    src={memory.src}
+                    alt={memory.title}
+                    fill
+                    sizes="(max-width: 768px) 78vw, 360px"
+                    className={styles.memoryImage}
+                  />
+                </div>
+                <div className={styles.memoryCopy}>
+                  <h3>{memory.title}</h3>
+                  <p>{memory.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.poemSection} data-reveal>
+        <span id="poem" className={styles.anchor} />
+        <Container size="lg">
+          <div className={styles.sceneLabel}>
+            <span>03</span>
+            <span>Poem corner</span>
+          </div>
+          <Title order={2} className={styles.poemTitle}>
+            For Pauline, in every possible universe.
+          </Title>
+          <div className={styles.poem}>
+            <p>Sen doğdun, dünya biraz daha aydınlık oldu,</p>
+            <p>Ben seni sevdim, kalbim kendi evini buldu.</p>
+            <p>Adın geçince içimde bahar uyanır,</p>
+            <p>Gülüşünle en uzun gece bile sabaha inanır.</p>
+            <p>İyi ki doğdun sevgilim, iyi ki varsın,</p>
+            <p>Benim en güzel duam, en gerçek yarınımsın.</p>
+          </div>
+        </Container>
+      </section>
+
+      <aside className={`${styles.floatingChat} ${chatOpen ? styles.floatingChatOpen : ""}`}>
+        {chatOpen && (
+          <Paper className={styles.chatAnswer} shadow="xl">
+            <button type="button" onClick={() => setChatOpen(false)} aria-label="Close answer">×</button>
+            <span>Pauline AI</span>
+            <p>{messages[messages.length - 1]?.text}</p>
+          </Paper>
+        )}
+        <form onSubmit={onSubmit} className={styles.chatPillForm}>
+          <span className={styles.onlineDot} />
+          <strong>Pauline AI</strong>
+          <input
+            aria-label="Ask Pauline AI"
+            placeholder="Ask me anything..."
+            value={input}
+            onChange={(event) => setInput(event.currentTarget.value)}
+          />
+          <button type="submit" aria-label="Send message">↑</button>
+        </form>
+      </aside>
+    </main>
+  );
+}
