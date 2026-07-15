@@ -228,7 +228,7 @@ export default function Home() {
           <div className={styles.storyProgress} aria-hidden="true"><span /></div>
           <div className={`${styles.storyBeat} ${styles.storyBeatOne}`}>
             <small>01 / The beginning</small>
-            <h2>One life.<br />Then you.</h2>
+            <h2>YOU ARE MY EVERYTHING</h2>
           </div>
         </div>
       </section>
