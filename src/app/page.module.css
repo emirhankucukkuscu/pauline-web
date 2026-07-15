@@ -303,22 +303,23 @@
 
 .storyMedia {
   z-index: 1;
-  inset: auto auto 8vh 6vw;
-  width: min(58vw, 880px);
-  height: min(58vh, 650px);
+  inset: auto auto 8vh 28vw;
+  width: min(42vw, 560px);
+  height: min(76vh, 900px);
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 28px 80px rgba(21, 29, 86, 0.18);
-  transform: rotate(-3deg) scale(0.94);
+  transform: rotate(-3deg);
   will-change: transform;
 }
 
-.storyMedia video,
 .storyImage {
   object-fit: cover;
 }
 
 .storyMedia video {
+  object-fit: cover;
   filter: saturate(0.72) contrast(1.08) sepia(0.08);
 }
 
@@ -371,13 +372,14 @@
 
 .storyBeat {
   position: absolute;
-  left: max(24px, calc((100vw - 1320px) / 2));
+  left: 50%;
   top: 50%;
-  max-width: 1000px;
+  width: min(90vw, 1280px);
   z-index: 3;
   color: #090a0e;
   opacity: 0;
-  transform: translateY(30px);
+  text-align: center;
+  transform: translate(-50%, 30px);
   will-change: opacity, transform;
 }
 
@@ -400,7 +402,7 @@
 
 .storyBeatOne {
   opacity: 1;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .letterSection {
@@ -761,16 +763,15 @@
   }
 
   .storyMedia {
-    left: 7vw;
+    left: 24vw;
     bottom: 7vh;
-    width: 72vw;
-    height: 45vh;
+    width: min(52vw, 430px);
+    height: 62vh;
     transform: rotate(-2deg);
   }
 
   .storyBeat {
-    top: 28%;
-    right: 54px;
+    top: 50%;
   }
 
   .storyBeat h2 {
@@ -841,12 +842,13 @@
   }
 
   .storyMedia {
-    width: 86vw;
-    height: 42vh;
+    left: 18vw;
+    width: 64vw;
+    height: 58vh;
   }
 
   .storyBeat {
-    top: 25%;
+    top: 50%;
   }
 
   .motionLoop {
