@@ -246,19 +246,30 @@ export default function Home() {
                 MY LOVE, PAULINE
               </Title>
               <Text className={styles.letterText}>
-                Bugün senin doğum günün, ama ben içimden geçenleri sadece bir günün
-                içine sığdıramıyorum. Sen hayatıma geldiğinden beri sıradan anların bile
-                bir anlamı, beklenmedik sessizliklerin bile bir sıcaklığı var. Seninle
-                gülmek, seninle yürümek, seninle aynı gökyüzüne bakmak bile bana hayatın
-                ne kadar güzel olabileceğini hatırlatıyor.
+                Happy birthday, my everything.. Some people enter a life like an
+                explanation, but you came like a turning point. Since you appeared,
+                everything feels warmer and lighter, as if the world learned gentleness
+                through you. You have a presence that changes the room and a heart that
+                makes people feel safe without asking for anything back. Even silence
+                feels softer around you, like everything finally has a place to rest.
               </Text>
               <Text className={styles.letterText}>
-                Sana baktığımda sadece sevdiğim kişiyi değil, yanında daha iyi biri olmak
-                istediğim insanı görüyorum. Gülüşün bende kalan en güzel melodi, varlığın
-                ise günlerimin en huzurlu yeri. İyi ki doğdun sevgilim. İyi ki varsın,
-                iyi ki benim hayatımdasın, iyi ki seninle aynı hikayenin içindeyim.
+                You are the most beautiful and perfect woman in the entire universe for
+                me. You are hardworking, successful, smart, and beautiful, but most
+                importantly you have such a clean soul, a pure heart, kind thoughts, and
+                the most gentle way of caring for people. You deserve the most beautiful
+                things in life. So no matter what happens in the future, never forget
+                this: the result will always become beautiful for you. You will have a
+                life where you feel truly happy and where you achieve your dreams. One by
+                one, you will make those priceless dreams real, and I will be the
+                happiest man in the world, smiling at every success of yours.
               </Text>
-              <Text className={styles.signature}>Forever yours.</Text>
+              <Text className={styles.letterText}>
+                May your future be filled with peace, health, and the kind of happiness
+                that feels soft and endless. I wish you a life where every dream you
+                carry becomes real, and every year ahead treats you as beautifully as you
+                deserve. Happiest birthday to the love of my life :))
+              </Text>
             </Stack>
           </div>
         </Container>

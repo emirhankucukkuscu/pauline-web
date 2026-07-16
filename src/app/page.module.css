@@ -413,9 +413,10 @@
 
 .splitScene {
   display: grid;
-  grid-template-columns: 0.42fr 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1280px);
+  justify-content: center;
+  gap: 46px;
+  align-items: center;
 }
 
 .letterSection .sceneLabel,
@@ -424,14 +425,20 @@
 }
 
 .letterSection .sceneLabel {
-  position: sticky;
-  top: 120px;
-  justify-content: flex-start;
+  justify-content: center;
   color: rgba(23, 16, 17, 0.58);
 }
 
 .letterCopy {
-  max-width: 880px;
+  width: min(90vw, 1280px);
+  max-width: 1280px;
+  align-items: center;
+  text-align: center;
+}
+
+.letterSection .sectionTitle {
+  white-space: nowrap;
+  font-size: clamp(42px, 6vw, 92px);
 }
 
 .sectionTitle,
@@ -809,6 +816,10 @@
 
   .letterSection .sceneLabel {
     position: static;
+  }
+
+  .letterSection .sectionTitle {
+    font-size: clamp(34px, 9vw, 72px);
   }
 
   .chatPanel {
