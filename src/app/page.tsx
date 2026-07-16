@@ -13,11 +13,6 @@ import styles from "./page.module.css";
 
 const memories = [
   {
-    src: "/IMG_9734.jpeg",
-    title: "The look I never forget",
-    text: "Bu fotoğrafta bana hep aynı şey geliyor: iyi ki hayatımda Pauline var.",
-  },
-  {
     src: "/CIMG1481.JPG",
     title: "Cafeteria moments",
     text: "Our long talks, sharing the meals we lovingly prepared for each other, and the time we got busted by the professor 🙈",
@@ -39,8 +34,8 @@ const memories = [
   },
   {
     src: "/IMG_9795.JPG",
-    title: "A memory with a heartbeat",
-    text: "Her fotoğrafın altında tek cümle var aslında: seni çok seviyorum.",
+    title: "I LOVE TO COOK FOR YOU",
+    text: "I love cooking for you, especially when I see you full, happy, and enjoying every bite :)",
   },
 ];
 
