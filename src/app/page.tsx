@@ -19,23 +19,23 @@ const memories = [
   },
   {
     src: "/CIMG1481.JPG",
-    title: "A tiny piece of forever",
-    text: "Bazen bir an sadece bir an değildir; dönüp baktığında kalbinin evine dönüşür.",
+    title: "Cafeteria moments",
+    text: "Our long talks, sharing the meals we lovingly prepared for each other, and the time we got busted by the professor 🙈",
   },
   {
     src: "/CIMG1536.JPG",
-    title: "Us, softly",
-    text: "Seninle en sıradan gün bile içimde saklamak istediğim bir hatıraya dönüşüyor.",
+    title: "YOU ARE THE WARMTH OF MY HEART.",
+    text: "Everyting I do is for you",
   },
   {
     src: "/IMG_9642.jpeg",
-    title: "My favorite person",
-    text: "Gülüşün, günün neresinde olursam olayım beni kendime getiriyor.",
+    title: "Celebration of your existence",
+    text: "It was forbidden to say ''birthday'' 🤭",
   },
   {
     src: "/df69b814-7183-48fa-87e6-537bc5546d9e.jpg",
-    title: "Love in one frame",
-    text: "Bu kareyi görünce aklıma gelen tek şey: daha nice yıllar, daha nice biz.",
+    title: "The First Halloween",
+    text: "The Halloween party where even the ones who didn’t know finally found out :)",
   },
   {
     src: "/IMG_9795.JPG",
