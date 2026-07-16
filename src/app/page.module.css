@@ -711,12 +711,19 @@
 }
 
 .poem {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
   margin-top: 46px;
   color: rgba(16, 17, 22, 0.82);
   font-family: Georgia, serif;
   font-size: clamp(23px, 4vw, 40px);
   font-style: italic;
   line-height: 1.75;
+}
+
+.poemStanza p {
+  margin: 0;
 }
 
 @keyframes scrollMemories {

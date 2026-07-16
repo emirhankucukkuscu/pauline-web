@@ -306,15 +306,57 @@ export default function Home() {
             <span>Poem corner</span>
           </div>
           <Title order={2} className={styles.poemTitle}>
-            For Pauline, in every possible universe.
+            PERFECT TO ME, FOREVER
           </Title>
           <div className={styles.poem}>
-            <p>Sen doğdun, dünya biraz daha aydınlık oldu,</p>
-            <p>Ben seni sevdim, kalbim kendi evini buldu.</p>
-            <p>Adın geçince içimde bahar uyanır,</p>
-            <p>Gülüşünle en uzun gece bile sabaha inanır.</p>
-            <p>İyi ki doğdun sevgilim, iyi ki varsın,</p>
-            <p>Benim en güzel duam, en gerçek yarınımsın.</p>
+            <div className={styles.poemStanza}>
+              <p>You are perfect for me, perfect, straight up, in every way,</p>
+              <p>not "almost," not "maybe," not "one day."</p>
+              <p>You&apos;re the kind of perfect that breaks the scale,</p>
+              <p>the kind of perfect that makes the whole world pale.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>I look at you and everything goes still,</p>
+              <p>like the room forgets how to breathe until it will.</p>
+              <p>Your name is the word my lips repeat,</p>
+              <p>and my heart runs to you on shaking feet.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>I&apos;m crazy about you, soft, unstoppable fire,</p>
+              <p>one look from you and I&apos;m falling higher and higher.</p>
+              <p>I don&apos;t fall for you once and then call it done,</p>
+              <p>I fall again at midnight, again at the sun.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>You&apos;re perfect for me when you shine,</p>
+              <p>perfect for me when you&apos;re tired and not feeling fine.</p>
+              <p>Perfect in your silence, perfect when you talk,</p>
+              <p>perfect in the way you laugh, perfect in the way you walk.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>How do I love you? Like oceans love tide,</p>
+              <p>like stars love the night where they can&apos;t really hide.</p>
+              <p>Like rain loves the earth when it&apos;s thirsty and dry,</p>
+              <p>like wings love the wind and remember to fly.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>And I&apos;ll never get tired of loving you,</p>
+              <p>no matter what the days try to put us through.</p>
+              <p>My love doesn&apos;t fade, it grows and it grows,</p>
+              <p>it blooms in my chest like a wild red rose.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>Sometimes my heart feels too small to contain</p>
+              <p>this beautiful chaos, this sweet kind of insane.</p>
+              <p>I swear it could burst from how much it&apos;s true,</p>
+              <p>from the endless, ridiculous love for you.</p>
+            </div>
+            <div className={styles.poemStanza}>
+              <p>You are, and you&apos;ll always be, perfect to me,</p>
+              <p>not just for a while, but endlessly.</p>
+              <p>If forever had a face, it would be you,</p>
+              <p>and my heart would still whisper: it&apos;s you, it&apos;s you.</p>
+            </div>
           </div>
         </Container>
       </section>
