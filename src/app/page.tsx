@@ -24,7 +24,12 @@ const memories = [
   },
   {
     src: "/IMG_9642.jpeg",
-    title: "Celebration of your existence",
+    title: "YOUR NAME IS KEPT IN THE MOST BEAUTIFUL CORNER OF MY HOME",
+    text: "Your name is written on my heart, engraved in my life. You are the reason I live",
+  },
+  {
+    src: "/WhatsApp Video 2025-12-04 at 20.54.16.mp4",
+    title: "SURPRISE CELEBRATION OF YOUR EXISTENCE",
     text: "It was forbidden to say ''birthday'' 🤭",
   },
   {
@@ -296,13 +301,25 @@ export default function Home() {
             {memoryItems.map((memory, index) => (
               <article className={styles.memoryCard} key={`${memory.src}-${index}`}>
                 <div className={styles.memoryImageWrap}>
-                  <Image
-                    src={memory.src}
-                    alt={memory.title}
-                    fill
-                    sizes="(max-width: 768px) 78vw, 360px"
-                    className={styles.memoryImage}
-                  />
+                  {memory.src.endsWith(".mp4") ? (
+                    <video
+                      className={styles.memoryImage}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source src={memory.src} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={memory.src}
+                      alt={memory.title}
+                      fill
+                      sizes="(max-width: 768px) 78vw, 360px"
+                      className={styles.memoryImage}
+                    />
+                  )}
                 </div>
                 <div className={styles.memoryCopy}>
                   <h3>{memory.title}</h3>
