@@ -42,6 +42,11 @@ const memories = [
     title: "New Year 2026",
     text: "As long as you smile, every year is the best for me",
   },
+  {
+    src: "/28B50310-0C0B-4039-949C-B448A416FF99_4_5005_c.jpeg",
+    title: "UNEXPECTED SNOW AFTER GYM",
+    text: "Anything is romantic with you",
+  },
 ];
 
 function getPaulineAnswer(question: string) {
