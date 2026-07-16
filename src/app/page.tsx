@@ -37,6 +37,11 @@ const memories = [
     title: "I LOVE TO COOK FOR YOU",
     text: "I love cooking for you, especially when I see you full, happy, and enjoying every bite :)",
   },
+  {
+    src: "/2ED9AF7F-54AF-48F7-A025-8C07FD4C4CB3_1_105_c.jpeg",
+    title: "New Year 2026",
+    text: "As long as you smile, every year is the best for me",
+  },
 ];
 
 function getPaulineAnswer(question: string) {
