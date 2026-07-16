@@ -368,6 +368,7 @@ export default function Home() {
               <p>If forever had a face, it would be you,</p>
               <p>and my heart would still whisper: it&apos;s you, it&apos;s you.</p>
             </div>
+            <p className={styles.poemSignature}>From Your Biggest Fan :)</p>
           </div>
         </Container>
       </section>

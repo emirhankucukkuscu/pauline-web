@@ -733,6 +733,12 @@
   margin: 0;
 }
 
+.poemSignature {
+  align-self: flex-end;
+  margin: 6px 0 0;
+  font-size: clamp(18px, 2.4vw, 28px);
+}
+
 @keyframes scrollMemories {
   from {
     transform: translateX(0);
