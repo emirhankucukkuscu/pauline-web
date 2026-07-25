@@ -127,6 +127,26 @@ const memories = [
     title: "Football time",
     text: "You have incredible footwork",
   },
+  {
+    src: "/7A294E18-9E10-4839-ABCA-A64F906267B9_1_105_c.jpeg",
+    title: "OUR SUSHI GAME",
+    text: "And we had to play without chopsticks 😂",
+  },
+  {
+    src: "/IMG_1522.mp4",
+    title: "You are my 5 star movie",
+    text: "I wanna watch you forever",
+  },
+  {
+    src: "/27E84E13-3B48-4E9C-8362-4FCD8536A5B7_1_102_o.jpeg",
+    title: "We gifted German jerseys each other :)",
+    text: "l love to wear together!",
+  },
+  {
+    src: "/DB1D20DB-F64B-4DB9-8971-342AF221F6EA_1_105_c.jpeg",
+    title: "I wanna grow old with you",
+    text: "and I wanna take care of you forever..",
+  },
 ];
 
 function getPaulineAnswer(question: string) {
