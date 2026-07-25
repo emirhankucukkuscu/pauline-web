@@ -636,6 +636,7 @@
 }
 
 .memoryTrack {
+  position: relative;
   width: 100%;
   margin-top: 62px;
   overflow: hidden;
@@ -650,6 +651,40 @@
 
 .memoryRail:hover {
   animation-play-state: paused;
+}
+
+.memoryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(16, 17, 22, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 48px rgba(15, 45, 28, 0.18);
+  color: #101116;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(16px);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.memoryArrow:hover,
+.memoryArrow:focus-visible {
+  background: #1da66a;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.memoryArrowLeft {
+  left: 22px;
+}
+
+.memoryArrowRight {
+  right: 22px;
 }
 
 .memoryCard {
@@ -674,6 +709,10 @@
   object-fit: cover;
   filter: saturate(0.9);
   transition: transform 700ms ease, filter 700ms ease;
+}
+
+.memoryImageTop {
+  object-position: top center;
 }
 
 .memoryCard:hover .memoryImage {
@@ -836,6 +875,12 @@
 
   .memoryImageWrap {
     height: 420px;
+  }
+
+  .memoryArrow {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
   }
 }
 

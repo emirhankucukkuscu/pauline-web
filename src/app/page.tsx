@@ -28,7 +28,7 @@ const memories = [
     text: "Your name is written on my heart, engraved in my life. You are the reason I live",
   },
   {
-    src: "/WhatsApp Video 2025-12-04 at 20.54.16.mp4",
+    src: "/short surprise.mp4",
     title: "SURPRISE CELEBRATION OF YOUR EXISTENCE",
     text: "It was forbidden to say ''birthday'' 🤭",
   },
@@ -57,6 +57,76 @@ const memories = [
     title: "First Köln Dom Selfie",
     text: "I would pluck all the stars from the sky for you",
   },
+  {
+    src: "/EFE5A03E-10EF-4600-858B-2990C52B28CE_1_105_c.jpeg",
+    title: "Black and Yellow",
+    text: "You made me BVB fan!",
+  },
+  {
+    src: "/56867F7F-9361-4ABA-94D6-79AA5C064D48_1_105_c.jpeg",
+    title: "First Linden tea I brew for you",
+    text: "I make what your body needs",
+  },
+  {
+    src: "/4ADDD23A-D338-4FBC-87BE-722CA234921C_1_105_c.jpeg",
+    title: "Soup time!",
+    text: "II'm trying to get you to eat it at least once a month :)",
+  },
+  {
+    src: "/melon.mp4",
+    title: "I bring your healthy meals to the uni",
+    text: "Because my strong woman deserves to eat healthy and balanced :)",
+  },
+  {
+    src: "/oat meal.mp4",
+    title: "OAT MEAL",
+    text: "I am happy your favorite snack is my oat formula recipe hehe",
+  },
+  {
+    src: "/740B0499-1BDD-4033-8591-F65F773C0AEC_1_105_c.jpeg",
+    title: "OUR 70 YEARS OLD COUPLE PHOTO",
+    text: "Your ''favorite'' one haha",
+  },
+  {
+    src: "/CEDEA172-07B4-4D05-BFB7-075780D5A9C2_4_5005_c.jpeg",
+    title: "My favorite flowers",
+    text: "I will never forget those :)",
+  },
+  {
+    src: "/F05350FA-5434-4A69-A4B7-27EF3D24ECE6_1_105_c.jpeg",
+    title: "The first little gift I prepared for you :)",
+    text: "You will publish your own books in the future and I will always be your biggest fan",
+  },
+  {
+    src: "/246E3B1C-805F-43CD-BF64-11CEB1C26F77_1_105_c.jpeg",
+    title: "THE FIRST FLOWERS I GOT FOR YOU",
+    text: "Altough they were beautiful, nothing is close to your beauty",
+  },
+  {
+    src: "/bday restaurant.mp4",
+    title: "BIRTHDAY DINNER",
+    text: "You deserve the best in this life",
+  },
+  {
+    src: "/breakfasts.mp4",
+    title: "Our breakfast times",
+    text: "The world stops when we are still, and I wouldn’t trade those precious seconds for anything",
+  },
+  {
+    src: "/IMG_0895.mp4",
+    title: "Bowling Night",
+    text: "You are very talented in everything!",
+  },
+  {
+    src: "/F794B797-6843-45E8-B2B1-5ACD1429936A_1_105_c.jpeg",
+    title: "OUR FASHION GAME :)",
+    text: "You are the most beautiful woman in every way with every style 💚",
+  },
+  {
+    src: "/IMG_2083.mp4",
+    title: "Football time",
+    text: "You have incredible footwork",
+  },
 ];
 
 function getPaulineAnswer(question: string) {
@@ -83,6 +153,7 @@ function getPaulineAnswer(question: string) {
 
 export default function Home() {
   const pageRef = useRef<HTMLElement>(null);
+  const memoryRailRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [messages, setMessages] = useState([
     {
@@ -94,6 +165,12 @@ export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
 
   const memoryItems = useMemo(() => [...memories, ...memories], []);
+
+  const setMemorySpeed = (speed: number) => {
+    memoryRailRef.current?.getAnimations().forEach((animation) => {
+      animation.playbackRate = speed;
+    });
+  };
 
   useEffect(() => {
     const page = pageRef.current;
@@ -302,13 +379,37 @@ export default function Home() {
           </Title>
         </Container>
         <div className={styles.memoryTrack}>
-          <div className={styles.memoryRail}>
+          <button
+            type="button"
+            className={`${styles.memoryArrow} ${styles.memoryArrowLeft}`}
+            aria-label="Speed memories to the left"
+            onMouseEnter={() => setMemorySpeed(-3.6)}
+            onMouseLeave={() => setMemorySpeed(1)}
+            onFocus={() => setMemorySpeed(-3.6)}
+            onBlur={() => setMemorySpeed(1)}
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            className={`${styles.memoryArrow} ${styles.memoryArrowRight}`}
+            aria-label="Speed memories to the right"
+            onMouseEnter={() => setMemorySpeed(3.6)}
+            onMouseLeave={() => setMemorySpeed(1)}
+            onFocus={() => setMemorySpeed(3.6)}
+            onBlur={() => setMemorySpeed(1)}
+          >
+            →
+          </button>
+          <div ref={memoryRailRef} className={styles.memoryRail}>
             {memoryItems.map((memory, index) => (
               <article className={styles.memoryCard} key={`${memory.src}-${index}`}>
                 <div className={styles.memoryImageWrap}>
                   {memory.src.endsWith(".mp4") ? (
                     <video
-                      className={styles.memoryImage}
+                      className={`${styles.memoryImage} ${
+                        memory.src === "/breakfasts.mp4" ? styles.memoryImageTop : ""
+                      }`}
                       autoPlay
                       muted
                       loop
@@ -349,7 +450,7 @@ export default function Home() {
           <div className={styles.poem}>
             <div className={styles.poemStanza}>
               <p>You are perfect for me, perfect, straight up, in every way,</p>
-              <p>not "almost," not "maybe," not "one day."</p>
+              <p>not &quot;almost,&quot; not &quot;maybe,&quot; not &quot;one day.&quot;</p>
               <p>You&apos;re the kind of perfect that breaks the scale,</p>
               <p>the kind of perfect that makes the whole world pale.</p>
             </div>
