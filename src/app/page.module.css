@@ -8,43 +8,133 @@
   scroll-behavior: smooth;
 }
 
+.pageLocked {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.lockScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(54, 54, 54, 0.25), transparent 34%),
+    linear-gradient(180deg, #040404 0%, #0d0d0f 45%, #000000 100%);
+}
+
+.lockAura {
+  position: absolute;
+  width: min(72vw, 740px);
+  height: min(72vw, 740px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 66%);
+  filter: blur(18px);
+}
+
+.lockCard {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 640px);
+  padding: clamp(30px, 5vw, 52px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background: rgba(10, 10, 12, 0.82);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(18px);
+  text-align: center;
+}
+
+.lockEyebrow {
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lockTitle {
+  margin-top: 18px;
+  color: #ffffff;
+  font-size: clamp(38px, 8vw, 72px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.lockTitle span {
+  display: block;
+  margin-top: 10px;
+  color: #1da66a;
+}
+
+.lockText {
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.lockForm {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.lockForm input {
+  width: 100%;
+  min-height: 56px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font: inherit;
+}
+
+.lockForm input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.lockForm button {
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff, #1da66a);
+  color: #050505;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lockError {
+  margin-top: 14px;
+  color: #ff9f9f;
+  font-size: 14px;
+}
+
 .globalLine {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   overflow: hidden;
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 600ms ease;
 }
 
-.globalLoop,
-.globalSweep {
+.heartsVisible {
+  opacity: 1;
+}
+
+.heartEmoji {
   position: absolute;
   display: block;
-  border: clamp(28px, 4.3vw, 72px) solid rgba(29, 166, 106, 0.76);
-  will-change: transform;
-  transition: transform 120ms linear;
-}
-
-.globalLoop {
-  left: -16vw;
-  top: 4vh;
-  width: 66vw;
-  height: 82vh;
-  border-radius: 50%;
-  transform: translate3d(calc(var(--page-progress) * 46vw), calc(var(--page-progress) * 24vh), 0)
-    rotate(calc(-18deg + var(--page-progress) * 240deg));
-}
-
-.globalSweep {
-  left: 28vw;
-  top: 46vh;
-  width: 94vw;
-  height: 58vh;
-  border-color: rgba(93, 196, 125, 0.68);
-  border-left-color: transparent;
-  border-radius: 50%;
-  transform: translate3d(calc(var(--page-progress) * -42vw), calc(var(--page-progress) * -22vh), 0)
-    rotate(calc(12deg - var(--page-progress) * 170deg));
+  opacity: 0.26;
+  filter: drop-shadow(0 10px 20px rgba(29, 166, 106, 0.12));
+  will-change: transform, opacity;
+  animation: fallHeart 18s linear infinite;
 }
 
 .page [data-reveal] :is(.sceneLabel, .sectionTitle, .chatTitle, .chatPanel, .letterText, .poem) {
@@ -157,8 +247,8 @@
   min-height: 100vh;
   flex-direction: column;
   justify-content: center;
-  padding-top: 116px;
-  padding-bottom: 58px;
+  padding-top: 96px;
+  padding-bottom: 36px;
 }
 
 .heroKicker,
@@ -180,7 +270,7 @@
 
 .heroTitle {
   max-width: 1220px;
-  margin-top: 34px;
+  margin-top: 20px;
   color: #0a0b10;
   font-size: clamp(58px, 11.8vw, 178px);
   font-weight: 900;
@@ -200,7 +290,7 @@
   gap: 32px;
   align-items: end;
   justify-content: space-between;
-  margin-top: 44px;
+  margin-top: 22px;
 }
 
 .heroText,
@@ -251,44 +341,6 @@
   height: 100vh;
   overflow: hidden;
   background: #f2f3fa;
-}
-
-.motionLine {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.motionLoop,
-.motionSweep {
-  position: absolute;
-  display: block;
-  border: clamp(28px, 4.2vw, 72px) solid #1da66a;
-  will-change: transform;
-}
-
-.motionLoop {
-  left: -12vw;
-  top: 6vh;
-  width: 62vw;
-  height: 82vh;
-  border-radius: 50%;
-  transform: translate3d(calc(var(--page-progress) * 34vw), calc(var(--page-progress) * -18vh), 0)
-    rotate(calc(-18deg + var(--page-progress) * 210deg));
-}
-
-.motionSweep {
-  left: 30vw;
-  top: 38vh;
-  width: 92vw;
-  height: 54vh;
-  border-color: #5dc47d;
-  border-left-color: transparent;
-  border-radius: 50%;
-  transform: translate3d(calc(var(--page-progress) * -28vw), calc(var(--page-progress) * 18vh), 0)
-    rotate(calc(12deg - var(--page-progress) * 74deg));
 }
 
 .storyMedia,
@@ -564,6 +616,12 @@
   cursor: pointer;
 }
 
+.chatPillForm > button:disabled,
+.chatPillForm input:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .onlineDot {
   width: 9px;
   height: 9px;
@@ -801,6 +859,30 @@
   }
 }
 
+@keyframes fallHeart {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10px, -24vh, 0) scale(0.82) rotate(-12deg);
+  }
+
+  12% {
+    opacity: 0.26;
+  }
+
+  55% {
+    transform: translate3d(18px, 54vh, 0) scale(1.04) rotate(9deg);
+  }
+
+  90% {
+    opacity: 0.22;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-14px, 124vh, 0) scale(0.9) rotate(-8deg);
+  }
+}
+
 @media (max-width: 900px) {
   .cursorGlow {
     display: none;
@@ -816,18 +898,22 @@
   }
 
   .heroContent {
-    padding-top: 96px;
+    justify-content: flex-end;
+    padding-top: 88px;
+    padding-bottom: 28px;
   }
 
   .heroTitle {
     font-size: clamp(54px, 16vw, 92px);
+    font-weight: 900;
   }
 
   .storyMedia {
     left: 24vw;
-    bottom: 7vh;
+    top: 8vh;
+    bottom: auto;
     width: min(52vw, 430px);
-    height: 62vh;
+    height: 70vh;
     transform: rotate(-2deg);
   }
 
@@ -846,8 +932,8 @@
   }
 
   .scrollCue {
-    width: 132px;
-    height: 132px;
+    width: 118px;
+    height: 118px;
   }
 
   .letterSection,
@@ -895,6 +981,11 @@
     flex-direction: column;
   }
 
+  .heroBottom {
+    gap: 18px;
+    margin-top: 18px;
+  }
+
   .heroText,
   .chatIntro {
     font-size: 17px;
@@ -914,17 +1005,18 @@
 
   .storyMedia {
     left: 18vw;
+    top: 6vh;
+    bottom: auto;
     width: 64vw;
-    height: 58vh;
+    height: 74vh;
   }
 
   .storyBeat {
     top: 50%;
   }
 
-  .motionLoop {
-    width: 110vw;
-    height: 66vh;
+  .heartEmoji {
+    opacity: 0.24;
   }
 
   .floatingChat {
