@@ -52,6 +52,11 @@ const memories = [
     title: "UNEXPECTED SNOW AFTER GYM",
     text: "Anything is romantic with you",
   },
+  {
+    src: "/69AA7810-ACFC-4ADC-A4D6-A29E2380C58F_1_105_c.jpeg",
+    title: "First Köln Dom Selfie",
+    text: "I would pluck all the stars from the sky for you",
+  },
 ];
 
 function getPaulineAnswer(question: string) {
